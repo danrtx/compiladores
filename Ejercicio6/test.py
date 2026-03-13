@@ -1,14 +1,14 @@
 import sys
 from antlr4 import *
-from NumerosLexer import NumerosLexer
-from NumerosParser import NumerosParser
+from Saludo2Lexer import Saludo2Lexer
+from Saludo2Parser import Saludo2Parser
 
 def main():
-    input_code = "31 32 434"
+    input_code = "buenosdias Pedro"
     print(f"--- ENTRADA ---\n{input_code}\n---------------")
 
     input_stream = InputStream(input_code)
-    lexer = NumerosLexer(input_stream)
+    lexer = Saludo2Lexer(input_stream)
     stream = CommonTokenStream(lexer)
 
     print("--- TOKENS ---")
@@ -21,10 +21,10 @@ def main():
                 token_name = lexer.literalNames[token.type]
             else:
                 token_name = "LITERAL"
-            print(f"Texto: {token.text:8} | Tipo: {token_name}")
+            print(f"Texto: {token.text:12} | Tipo: {token_name}")
 
-    parser = NumerosParser(stream)
-    tree = parser.numero()
+    parser = Saludo2Parser(stream)
+    tree = parser.saludo()
 
     print("\n--- ÁRBOL SINTÁCTICO ---")
     print(tree.toStringTree(recog=parser))
